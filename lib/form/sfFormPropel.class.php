@@ -116,7 +116,22 @@ abstract class sfFormPropel extends sfFormObject
     $this->addOptionalForms($taintedValues);
     return parent::bind($taintedValues, $taintedFiles);
   }
-  
+
+  public function addOptionalFormsForEmbedded($taintedValues = null)
+  {
+    foreach($this->getEmbeddedForms() as $name => $form)
+    {
+      if(isset($taintedValues[$name]))
+      {
+        // recursively
+        $form->addOptionalForms($taintedValues[$name]);
+        // the parent form schema is not updated when updating an embedded form
+        // so we must embed it again
+        $this->embedForm($name, $form);
+      }
+    }
+  }
+
   public function addOptionalForms($taintedValues = null)
   {
     foreach ($this->optionalForms as $name => $form) {
@@ -130,6 +145,8 @@ abstract class sfFormPropel extends sfFormObject
           $this->getWidgetSchema()->moveField($name . $i, sfWidgetFormSchema::BEFORE, $name);
           $i++;
         }
+        // add optional forms for embeded ones
+        $this->addOptionalFormsForEmbedded($taintedValues);
       }
       else
       {
