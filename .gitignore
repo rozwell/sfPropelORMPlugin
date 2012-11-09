@@ -6,3 +6,4 @@ test/functional/fixtures/lib/model/om/
 /.gitmodules
 mockproject/
 junit.xml
+.svn

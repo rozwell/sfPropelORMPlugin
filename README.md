@@ -7,6 +7,47 @@ Replaces symfony's core Propel plugin by the latest version of Propel, in branch
 
 ## Installation
 
+### The Composer way
+
+Add the require to your composer.json. It's oddly named but like this Composer's symfony1 installer camelcases it correctly.
+Composer will install it into your project's plugins directory automatically, and add the requirements.
+
+    {
+        "config": {
+            "vendor-dir": "lib/vendor"
+        },
+        "require": {
+            "propel/sf-propel-o-r-m-plugin": "dev-master"
+        }
+    }
+
+Of course, don't forget to add Composer's autoloader to your ProjectConfiguration:
+
+``` php
+// config/ProjectConfiguration.class.php
+
+require __DIR__ .'/../lib/vendor/autoload.php';
+
+require_once dirname(__FILE__) .'/../lib/vendor/symfony/lib/autoload/sfCoreAutoload.class.php';
+sfCoreAutoload::register();
+
+class ProjectConfiguration extends sfProjectConfiguration
+{
+    public function setup()
+    {
+        $this->enablePlugins(array(
+            'sfPropelORMPlugin',
+            ...
+        ));
+
+        // mandatory because of the Composer vendor directory naming scheme
+        sfConfig::set('sf_phing_path', sfConfig::get('sf_lib_dir') .'/vendor/phing/phing');
+        sfConfig::set('sf_propel_path', sfConfig::get('sf_lib_dir') .'/vendor/propel/propel1');
+    }
+}
+```
+
+
 ### The Git way
 
 Clone the plugin from Github:

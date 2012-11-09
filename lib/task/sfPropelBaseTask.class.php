@@ -246,7 +246,7 @@ abstract class sfPropelBaseTask extends sfBaseTask
     // Call phing targets
     sfToolkit::addIncludePath(array(
       sfConfig::get('sf_symfony_lib_dir'),
-      sfConfig::get('sf_propel_generator_path', sfConfig::get('sf_propel_path').'generator/lib'),
+      sfConfig::get('sf_propel_generator_path', sfConfig::get('sf_propel_path').'/generator/lib'),
     ));
 
     $args = array();
@@ -469,6 +469,7 @@ abstract class sfPropelBaseTask extends sfBaseTask
       'nested_set' => 'nestedset.NestedSetBehavior',
       'sortable' => 'sortable.SortableBehavior',
       'sluggable' => 'sluggable.SluggableBehavior',
+      'sortable' => 'sortable.SortableBehavior',
       'concrete_inheritance' => 'concrete_inheritance.ConcreteInheritanceBehavior',
       'query_cache' => 'query_cache.QueryCacheBehavior',
       'aggregate_column' => 'aggregate_column.AggregateColumnBehavior',
