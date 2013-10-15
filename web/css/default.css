@@ -271,7 +271,9 @@
   padding-left: 0;
 }
 
-#sf_admin_container .errors input, #sf_admin_container .errors select
+
+#sf_admin_container .errors > div > .content > input,
+#sf_admin_container .errors > div > .content > select
 {
   border: 1px solid #f22;
 }
