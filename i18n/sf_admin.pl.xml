@@ -81,6 +81,10 @@
         <source>[0] no result|[1] 1 result|(1,+Inf] %1% results</source>
         <target>[0] brak wyników|[1,+Inf] wyników: %1%</target>
       </trans-unit>
+      <trans-unit>
+        <source>Are you sure?</source>
+        <target>Na pewno?</target>
+      </trans-unit>
 
       <!-- Pagination -->
       <trans-unit>
