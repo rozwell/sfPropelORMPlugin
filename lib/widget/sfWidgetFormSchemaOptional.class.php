@@ -34,6 +34,21 @@ class sfWidgetFormSchemaOptional extends sfWidgetFormSchemaDecoratorEscaped
     $this->options = array_merge($this->options, $options);
   }
 
+  public function render($name, $value = null, $attributes = array(), $errors = array())
+  {
+    $widgetString = $this->widget->render($name, $value, $attributes, $errors);
+
+    // extract scripts with src attributes and render them, since they will not be loaded/executed via eval() later
+    preg_match_all('/<script.*?src="(.*?)".*?>/i', $widgetString, $matches);
+    $scripts = '';
+    foreach(array_unique($matches[1]) as $src){
+      $scripts .= $this->renderContentTag('script', null, array('src' => $src));
+    }
+
+    $widgetString = $this->escape($widgetString);
+    return strtr($scripts.$this->getDecorator($name), array('%content%' => $widgetString));
+  }
+
   protected function getDecorator($name)
   {
     $strippedName = substr($name, strrpos($name, '[') + 1, strrpos($name, ']') - strrpos($name, '[') - 1);
