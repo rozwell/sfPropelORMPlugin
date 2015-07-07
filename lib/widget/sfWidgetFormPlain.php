@@ -40,6 +40,10 @@ class sfWidgetFormPlain extends sfWidgetForm
    */
   public function render($name, $value = null, $attributes = array(), $errors = array())
   {
+    if(!array_key_exists('id', $attributes)){
+      $attributes['id'] = $this->generateId($name);
+    }
+
     return $this->renderContentTag($this->getOption('tag'), self::escapeOnce($value), $attributes);
   }
 }
