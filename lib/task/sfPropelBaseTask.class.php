@@ -377,6 +377,7 @@ abstract class sfPropelBaseTask extends sfBaseTask
             'value' => $database->getParameter('encoding'),
           ),
         ),
+        'migrations' => $database->getParameter('migrations', true),
       );
     }
     return $connections;
@@ -396,6 +397,7 @@ abstract class sfPropelBaseTask extends sfBaseTask
           'value' => $database->getParameter('encoding'),
         ),
       ),
+      'migrations' => $database->getParameter('migrations', true),
     );
   }
 
