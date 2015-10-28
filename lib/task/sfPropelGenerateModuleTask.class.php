@@ -200,15 +200,15 @@ EOF;
     // customize php and yml files
     $finder = sfFinder::type('file')->name('*.php', '*.yml');
     $this->constants['CONFIG'] = sprintf(<<<EOF
-    model_class:           %s
-    theme:                 %s
-    non_verbose_templates: %s
-    with_show:             %s
-    singular:              %s
-    plural:                %s
-    route_prefix:          %s
-    with_propel_route:     %s
-    actions_base_class:    %s
+    model_class:            %s
+    theme:                  %s
+    non_verbose_templates:  %s
+    with_show:              %s
+    singular:               %s
+    plural:                 %s
+    route_prefix:           %s
+    with_propel_route:      %s
+    actions_base_class:     %s
 EOF
     ,
       $arguments['model'],
