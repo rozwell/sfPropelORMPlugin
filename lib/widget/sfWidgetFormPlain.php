@@ -26,6 +26,7 @@ class sfWidgetFormPlain extends sfWidgetForm
   protected function configure($options = array(), $attributes = array())
   {
     $this->addOption('tag', 'div');
+    $this->addOption('inner_tag');
   }
 
   /**
@@ -44,6 +45,12 @@ class sfWidgetFormPlain extends sfWidgetForm
       $attributes['id'] = $this->generateId($name);
     }
 
-    return $this->renderContentTag($this->getOption('tag'), self::escapeOnce($value), $attributes);
+    $value = self::escapeOnce($value);
+
+    if($tag = $this->getOption('inner_tag')){
+      $value = $this->renderContentTag($tag, $value);
+    }
+
+    return $this->renderContentTag($this->getOption('tag'), $value, $attributes);
   }
 }
