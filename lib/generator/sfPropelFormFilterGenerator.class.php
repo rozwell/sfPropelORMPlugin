@@ -269,7 +269,7 @@ class sfPropelFormFilterGenerator extends sfPropelFormGenerator
           break;
         case PropelColumnTypes::ENUM:
           $valueSet = $column->getValueSet();
-          $options[] = sprintf("'choices' => %s", preg_replace('/\s+/', '', var_export(array_keys($valueSet), true)));
+          $options[] = sprintf("'choices' => %s", preg_replace('/[\n\r]+/', '', var_export(array_keys($valueSet), true)));
           break;
       }
     }
